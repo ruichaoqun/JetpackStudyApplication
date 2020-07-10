@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Jetpack Study Application</string>
+    <string name="nameFormat">%s%d</string>
+</resources>
