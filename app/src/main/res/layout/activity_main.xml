@@ -7,6 +7,9 @@
         <variable
             name="user"
             type="com.ruichaoqun.jetpackstudyapplication.User" />
+        <variable
+            name="text"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/format(user.name,user.age)}"
+            android:text="@{text}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
