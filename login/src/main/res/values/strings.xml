@@ -1,0 +1,7 @@
+<resources>
+    <string name="i_have_read_and_agree">我已阅读并同意</string>
+    <string name="user_registration_agreement">《用户注册协议》</string>
+    <string name="privacy_policy">《隐私权政策》</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
