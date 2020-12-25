@@ -1,10 +1,7 @@
 package com.ruichaoqun.jetpackstudyapplication
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
 
 /**
  * @author Rui Chaoqun
@@ -23,7 +20,7 @@ class MyViewModel: ViewModel() {
     }
 
     private fun loadUsers() {
-        users.value = MutableList<User>().
+
     }
 
 }
