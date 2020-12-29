@@ -18,19 +18,19 @@ data class Resource<out T>(val status:Status,val data:T?,val message:String?,val
             )
         }
 
-        fun <T> error(msg:String,data:T?): Resource<T> {
+        fun <T> error(code:Int,msg:String): Resource<T> {
             return Resource(
                 Status.ERROR,
-                data,
+                null,
                 msg,
                 null
             )
         }
 
-        fun <T> loading(data:T?): Resource<T> {
+        fun <T> loading(): Resource<T> {
             return Resource(
                 Status.LOADING,
-                data,
+                null,
                 "",
                 null
             )

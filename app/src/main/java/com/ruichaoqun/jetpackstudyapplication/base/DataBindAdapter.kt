@@ -21,16 +21,16 @@ abstract class DataBindAdapter<T, V : ViewDataBinding>(
         .build()
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindHolder<V> {
-        val binding = createBinding(parent)
+        val binding = createBinding(parent,viewType)
         return DataBindHolder(binding)
     }
 
-    protected abstract fun createBinding(parent:ViewGroup):V
+    protected abstract fun createBinding(parent:ViewGroup,viewType: Int):V
 
     override fun onBindViewHolder(holder: DataBindHolder<V>, position: Int) {
         bind(holder.binding,getItem(position))
         holder.binding.executePendingBindings()
     }
 
-    abstract fun bind(binding: ViewDataBinding, item: T)
+    abstract fun bind(binding: V, item: T)
 }

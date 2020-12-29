@@ -13,6 +13,6 @@ import retrofit2.http.Path
  */
 interface WanAndroidService {
     @GET("list/{page}/json")
-    fun getHomeList(@Path("page") page:Int? = 0):BaseResponse<HomeListBean>
+    suspend fun getHomeList(@Path("page") page:Int? = 0):BaseResponse<HomeListBean>
 
 }

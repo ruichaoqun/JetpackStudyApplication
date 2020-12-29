@@ -15,17 +15,17 @@ import javax.inject.Singleton
  * @Version:        1.0
  */
 @Singleton
-open class AppExecutors(
-    private val diskIo: Executor,
-    private val networkIo: Executor,
+open class AppExecutors @Inject constructor() {
+    private val diskIo: Executor
+    private val networkIo: Executor
     private val mainThread: Executor
-) {
-    @Inject
-    constructor():this(
-        Executors.newSingleThreadExecutor(),
-        Executors.newFixedThreadPool(3),
-        MainThreadExecutor()
-    )
+
+    init {
+        diskIo = Executors.newSingleThreadExecutor()
+        networkIo = Executors.newFixedThreadPool(3)
+        mainThread =  MainThreadExecutor()
+    }
+
 
     fun diskIo():Executor{
         return diskIo

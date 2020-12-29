@@ -1,19 +1,30 @@
 package com.ruichaoqun.jetpackstudyapplication.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.ruichaoqun.jetpackstudyapplication.data.HomeListBean
+import com.ruichaoqun.jetpackstudyapplication.net.Resource
+import com.ruichaoqun.jetpackstudyapplication.net.onError
+import com.ruichaoqun.jetpackstudyapplication.net.onSuccess
+import com.ruichaoqun.jetpackstudyapplication.repository.HomeRepository
 
-class HomeViewModel : ViewModel() {
-    val mDataList:LiveData<HomeListBean> = MutableLiveData()
-    private val pageNumber:LiveData<Int> = MutableLiveData(0)
+class HomeViewModel @ViewModelInject constructor(val repository: HomeRepository): ViewModel() {
+    private var pageNumber = MutableLiveData<Int>()
 
-    init {
-        mDataList =
+    var homeList:LiveData<Resource<HomeListBean>> = pageNumber.switchMap {page->
+        liveData {
+            emit(Resource.loading<HomeListBean>())
+            repository.getHomeList(page)
+                .onSuccess {
+                    emit(Resource.success(data))
+                }
+                .onError {
+                    emit(Resource.error<HomeListBean>(code,message))
+                }
+        }
     }
 
-    fun loadMore(){
-        pageNumber.value++
+    init {
+        pageNumber.postValue(0)
     }
 }

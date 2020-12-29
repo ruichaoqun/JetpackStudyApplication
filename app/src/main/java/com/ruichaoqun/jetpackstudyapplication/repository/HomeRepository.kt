@@ -3,7 +3,9 @@ package com.ruichaoqun.jetpackstudyapplication.repository
 import com.ruichaoqun.jetpackstudyapplication.net.*
 import com.ruichaoqun.jetpackstudyapplication.net.ApiResponse.Companion.create
 import com.ruichaoqun.jetpackstudyapplication.utils.whatIfNotNull
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -16,22 +18,11 @@ import javax.inject.Inject
  */
 class HomeRepository @Inject constructor(private val wanAndroidService:WanAndroidService){
 
-    suspend fun getHomeList(page:Int) =
-        flow {
-             transferData { wanAndroidService.getHomeList(page) }
-                 .onSuccess {
-                     data.whatIfNotNull{
-                         emit(it)
-                     }
-
-                 }
-                 .onError {
-
-                 }
-        }
+    suspend fun getHomeList(page:Int) = transferData { wanAndroidService.getHomeList(page) }
 
 
-    fun <T> transferData(fetchResponse:()-> BaseResponse<T>):BaseResponse<T>{
+
+    suspend fun <T> transferData(fetchResponse:suspend ()-> BaseResponse<T>):BaseResponse<T>{
         return try {
             fetchResponse()
         }catch (e:Exception){

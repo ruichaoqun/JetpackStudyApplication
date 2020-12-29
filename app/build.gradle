@@ -53,6 +53,7 @@ dependencies {
     implementation deps.retrofit.gson
     implementation deps.okhttp_logging_interceptor
     implementation deps.hilt.hilt_dagger
+    implementation deps.hilt.hilt_viewmodel
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.1'
     implementation 'androidx.navigation:navigation-ui:2.3.1'
@@ -60,6 +61,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
     kapt deps.hilt.kapt
+    kapt deps.hilt.kapt_viewmodel
     implementation deps.viewpager2
 
     implementation deps.kotlin.stdlib

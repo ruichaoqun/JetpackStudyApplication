@@ -7,7 +7,7 @@ package com.ruichaoqun.jetpackstudyapplication.net
  * @Description:    BaseResponse
  * @Version:        1.0
  */
-class BaseResponse<T>(val data:T?,val message:String?,val code:Int?)
+class BaseResponse<T>(val data:T?,val message:String,val code:Int)
 
 @JvmSynthetic
 suspend fun <T> BaseResponse<T>.onSuccess(
@@ -19,8 +19,8 @@ suspend fun <T> BaseResponse<T>.onSuccess(
     return this
 }
 
-fun <T> BaseResponse<T>.onError(
-    onResult: (t:BaseResponse<T>) -> Unit
+suspend fun <T> BaseResponse<T>.onError(
+    onResult: suspend BaseResponse<T>.() -> Unit
 ): BaseResponse<T> {
     if (this.code != 0) {
         onResult(this)

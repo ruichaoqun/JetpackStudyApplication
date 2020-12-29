@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.ruichaoqun.jetpackstudyapplication.AppExecutors
 import com.ruichaoqun.jetpackstudyapplication.R
 import com.ruichaoqun.jetpackstudyapplication.databinding.FragmentDashboardBinding
+import com.ruichaoqun.jetpackstudyapplication.ui.home.HomeListAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class DashboardFragment : Fragment() {
 
